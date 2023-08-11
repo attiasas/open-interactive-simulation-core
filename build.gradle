@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'org.attias.open.interactive.simulation'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:7.5'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId = group
+            artifactId = rootProject.name
+            version = project.findProperty("version")
+
+            pom {
+                name = rootProject.name
+                description = 'Open Interactive Simulation Core Library'
+                url = 'http://www.example.com/library'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.named('test') {
+    useTestNG()
+}
