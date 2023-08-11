@@ -25,13 +25,26 @@ publishing {
             pom {
                 name = rootProject.name
                 description = 'Open Interactive Simulation Core Library'
-                url = 'http://www.example.com/library'
+                url = 'https://github.com/attiasas/open-interactive-simulation-core'
 
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
                         url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
+                }
+
+                developers {
+                    developer {
+                        id = "attiasas"
+                        name = "Assaf Attias"
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://github.com/attiasas/open-interactive-simulation-core.git")
+                    developerConnection.set("scm:git:git@github.com/attiasas/open-interactive-simulation-core.git")
+                    url = "https://github.com/attiasas/open-interactive-simulation-core"
                 }
             }
         }
