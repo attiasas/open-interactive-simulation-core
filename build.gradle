@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        google()
+    }
+}
+
 plugins {
     id 'java'
     id 'maven-publish'
@@ -6,10 +16,24 @@ plugins {
 group 'org.attias.open.interactive.simulation'
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    google()
+    gradlePluginPortal()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+}
+
+ext {
+    gdxVersion = '1.10.0'
+    gdxControllersVersion = '2.1.0'
 }
 
 dependencies {
+    implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
+    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+
     testImplementation 'org.testng:testng:7.5'
 }
 
