@@ -11,6 +11,7 @@ import java.io.IOException;
 public class AppConfiguration {
 
     public static final String ENV_PROJECT_JAR = "IOS_ENV_PROJECT_JAR_PATH";
+    public static final String ENV_PROJECT_ASSETS_DIR = "IOS_ENV_PROJECT_ASSETS_DIR";
 
     public enum AppType {
         Desktop
@@ -50,7 +51,9 @@ public class AppConfiguration {
     }
 
     public static AppConfiguration getFromEnvironment() throws IOException {
-        System.out.println("Loading Application Configuration");
-        return new AppConfiguration().setProjectJarPath(System.getenv(ENV_PROJECT_JAR)).setProjectConfiguration(ProjectUtils.getFromEnvironment());
+        AppConfiguration configuration = new AppConfiguration();
+        configuration.setProjectJarPath(System.getenv(ENV_PROJECT_JAR));
+        configuration.setProjectConfiguration(ProjectUtils.getFromEnvironment());
+        return configuration;
     }
 }

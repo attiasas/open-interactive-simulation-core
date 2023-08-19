@@ -13,6 +13,6 @@ public class RunnerConfiguration {
     public String version = "1.0-SNAPSHOT";
     // List of all the platforms that the project will run on, must have at least one entry
     public Set<AppConfiguration.AppType> types = new HashSet<>();
-    // List of all the project asset directories, can be empty
-    public Set<String> assetsDirectories = new HashSet<>();
+    // Path to resources directory that will be used
+    public String assetsDirectory = "";
 }
