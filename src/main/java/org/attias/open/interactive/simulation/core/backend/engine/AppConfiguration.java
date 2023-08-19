@@ -1,6 +1,7 @@
 package org.attias.open.interactive.simulation.core.backend.engine;
 
-import org.attias.open.interactive.simulation.core.config.ProjectConfiguration;
+import org.attias.open.interactive.simulation.core.backend.config.ProjectConfiguration;
+import org.attias.open.interactive.simulation.core.backend.utils.ProjectUtils;
 
 import java.io.IOException;
 
@@ -50,6 +51,6 @@ public class AppConfiguration {
 
     public static AppConfiguration getFromEnvironment() throws IOException {
         System.out.println("Loading Application Configuration");
-        return new AppConfiguration().setProjectJarPath(ENV_PROJECT_JAR).setProjectConfiguration(ProjectConfiguration.getFromEnvironment());
+        return new AppConfiguration().setProjectJarPath(System.getenv(ENV_PROJECT_JAR)).setProjectConfiguration(ProjectUtils.getFromEnvironment());
     }
 }
