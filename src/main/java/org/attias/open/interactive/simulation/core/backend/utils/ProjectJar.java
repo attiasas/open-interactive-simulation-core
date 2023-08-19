@@ -1,10 +1,10 @@
-package org.attias.open.interactive.simulation.core.utils;
+package org.attias.open.interactive.simulation.core.backend.utils;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
@@ -12,13 +12,13 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class JarLoader implements Closeable {
+public class ProjectJar implements Closeable {
 
     private URL jarUrl;
     private JarFile jarFile;
     private URLClassLoader classLoader;
 
-    public JarLoader(String  jarPath) throws IOException, ClassNotFoundException {
+    public ProjectJar(String  jarPath) throws IOException, ClassNotFoundException {
         this.jarUrl = new URL("jar:file:" + jarPath+"!/"); //new URL("file://" + jarPath);
         this.classLoader = URLClassLoader.newInstance(new URL[]{this.jarUrl}); //new URLClassLoader(, this.getClass().getClassLoader());
 
@@ -44,6 +44,10 @@ public class JarLoader implements Closeable {
     public <T extends Object> T newInstance(String classToLoad) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class<T> loadedClass = (Class<T>) this.classLoader.loadClass(classToLoad);
         return loadedClass.getDeclaredConstructor().newInstance();
+    }
+
+    public InputStream getResourceAsStream(Path pathFromResourceFolder) {
+        return this.classLoader.getResourceAsStream(pathFromResourceFolder.toString());
     }
 
     @Override
