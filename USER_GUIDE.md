@@ -12,6 +12,10 @@
 
 ## 📚 Overview
 
+Welcome to the OIS Library User Guide! This page is your gateway to understanding how to implement projects using the OIS library. Whether you're a beginner or an experienced developer, this guide will provide you with a smooth introduction to creating your projects with the OIS library.
+
+Here, we'll walk you through the key classes and methods you need to know. By the end, you'll have a solid understanding of how to utilize this library effectively. Our guide is packed with detailed examples to help you along the way. Let's dive in and get started!
+
 ---
 
 ## 📄 Wiki
