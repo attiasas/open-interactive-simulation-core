@@ -15,6 +15,7 @@
 - [🐞 Reporting Issues](#-reporting-issues)
 - [🤝 Contributions](#-contributions)
 
+---
 ## 📚 Overview
 
 Welcome to the world of simplicity and efficiency in [LibGdx](https://libgdx.com/) development!
@@ -31,6 +32,7 @@ But that's not all. This library is the bedrock upon which other OIS products ar
 
 Join us on this journey to simplify your development process and create amazing simulations with ease.
 
+---
 ## 📦 Installation
 
 This library is not available in Maven central yet, required to be installed locally
@@ -50,10 +52,12 @@ This library is not available in Maven central yet, required to be installed loc
     }
    ```
 
+---
 ## 🏗️ Usage
 
 Discover the steps for implementing an OIS project using the library by exploring our comprehensive  [user guide](USER_GUIDE.md).
 
+---
 ## 🐞 Reporting Issues
 
 We highly recommend running Gradle with the ```-d```
@@ -62,6 +66,7 @@ option to get useful and readable debug information if something goes wrong with
 Please help us improve the library
 by [reporting any issues](https://github.com/attiasas/open-interactive-simulation-core/issues/new/choose) you encounter.
 
+---
 ## 🤝 Contributions
 
 We welcome pull requests from the community. To help us improve this project, please read
