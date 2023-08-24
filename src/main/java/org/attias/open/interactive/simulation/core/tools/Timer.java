@@ -1,7 +1,6 @@
 package org.attias.open.interactive.simulation.core.tools;
 
 import org.attias.open.interactive.simulation.core.log.AppLog;
-import org.attias.open.interactive.simulation.core.state.StateManager;
 
 public class Timer {
 
