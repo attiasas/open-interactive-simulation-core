@@ -19,13 +19,13 @@ import java.util.Map;
  */
 public class InteractiveSimulationEngine  extends ApplicationAdapter {
 
-    private static AppLog log = AppLog.get(InteractiveSimulationEngine.class);
+    private static final AppLog log = AppLog.get(InteractiveSimulationEngine.class);
     // The Gdx application
     private Application app;
     // The application configurations with the dynamic project configurations that runs on the engine
-    private AppConfiguration configuration;
+    private final AppConfiguration configuration;
     // The object used to access resources from your OIS project
-    private ResourceManager resourceManager;
+    private final ResourceManager resourceManager;
     // The state manager that handles the active states in the simulation
     public final StateManager stateManager;
 
@@ -49,7 +49,7 @@ public class InteractiveSimulationEngine  extends ApplicationAdapter {
         }
     }
 
-    private void loadFromProjectConfigurations() throws IOException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+    private void loadFromProjectConfigurations() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         log.info("Loading Project Configurations");
         ProjectConfiguration projectConfiguration = this.configuration.getProjectConfiguration();
         log.info("Loading Project states to manager");

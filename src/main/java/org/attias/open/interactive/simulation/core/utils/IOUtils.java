@@ -92,13 +92,14 @@ public class IOUtils {
         if (files == null) {
             return false;
         }
+        boolean result = true;
         for (File file : files) {
             if (file.isDirectory()) {
                 deleteContent(file);
             }
-            file.delete();
+            result &= file.delete();
         }
-        return true;
+        return result;
     }
 
     public static boolean createFileIfNotExists(Path path) throws IOException {
@@ -116,7 +117,7 @@ public class IOUtils {
     }
 
     public static void zipItems(Path archiveTargetPath, Path... itemsToZip) {
-        zipItems(archiveTargetPath, item -> item.getName(),itemsToZip);
+        zipItems(archiveTargetPath, File::getName,itemsToZip);
     }
 
     public static void zipItems(Path archiveTargetPath, ZipEntryConvertor itemConvertor, Path... itemsToZip) {

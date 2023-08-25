@@ -4,7 +4,7 @@ import org.attias.open.interactive.simulation.core.log.AppLog;
 
 public class Timer {
 
-    private static AppLog log = AppLog.get(Timer.class);
+    private static final AppLog log = AppLog.get(Timer.class);
     public float target;
     public float elapsed;
 
