@@ -20,19 +20,19 @@ Here, we'll walk you through the key classes and methods you need to know. By th
 
 ## 📄 Wiki
 
-User guide documentation to the content of the library.
+User guide documentation for the library's content.
 
 ### States
 
-Every simulation runs a set of `IState` defined by an ID. the state defines what to render in the screen and what to update.
-Each project OIS project must implement at least one state, you can choose:
+Every simulation is composed of a set of `IState` instances, each identified by an ID. These states dictate screen rendering and updates.
+Every OIS project must implement at least one state. You have two options:
 
-* Extend the class `SimpleSimulation` that implements basic features and configurations from this library and allows you to focus on the content.
-* Implement the interface `IState`to define all the simulation configurations and behavior yourself in addition to the content.
+* Extend the `SimpleSimulation` class, which incorporates fundamental features and configurations from this library, enabling you to concentrate on content.
+* Implement the `IState` interface to define all simulation configurations, behavior, and content yourself.
 
-The engine `StateManager` manage the active state in the simulation, you can use it to set your simulation states relations:
-1. Changing states and empty all active states.
-2. Add a new sub state to the active stack.
+The `StateManager` engine oversees the active state in the simulation. You can utilize it to establish relationships between your simulation states:
+1. Switch between states, clearing the active state stack.
+2. Append a new sub-state to the active stack.
 
 ```java
 public class MenuState implements IState {
@@ -42,8 +42,8 @@ public class MenuState implements IState {
     }  
   
     public void openSettings() {
-        // pause() current state and enter() new state.
-        // When new state will exit() it will call this state resume()
+        // pause() the current state and enter() a new state.
+        // When the new state exits(), it will trigger this state's resume()
         OIS.engine.states.pushSubState("settingsMenuState");
     }         
 }

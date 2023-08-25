@@ -9,10 +9,16 @@ import java.io.IOException;
  * For specific platform to run on the engine
  */
 public class AppConfiguration {
+    // The environment variable used to tell the runner where the OIS project jar exists.
+    // It will load the jar to run with the engine
+    public static final String ENV_PROJECT_JAR = "OIS_ENV_PROJECT_JAR_PATH";
+    // The environment variable used to tell the runner where the OIS project resources directory.
+    // When running not in production, it will load the resource to run with the engine as the assets directory
+    public static final String ENV_PROJECT_ASSETS_DIR = "OIS_ENV_PROJECT_ASSETS_DIR";
+    // The environment variable used to tell the runner what is the name of the artifact to generate on publish
+    public static final String ENV_PROJECT_NAME = "OIS_ENV_PROJECT_NAME";
 
-    public static final String ENV_PROJECT_JAR = "IOS_ENV_PROJECT_JAR_PATH";
-    public static final String ENV_PROJECT_ASSETS_DIR = "IOS_ENV_PROJECT_ASSETS_DIR";
-
+    // The Supported application running platforms by the OIS
     public enum AppType {
         Desktop
     }
@@ -21,23 +27,12 @@ public class AppConfiguration {
 
     private ProjectConfiguration projectConfiguration;
 
-    private String projectJarPath;
-
     public ProjectConfiguration getProjectConfiguration() {
         return projectConfiguration;
     }
 
     public AppConfiguration setProjectConfiguration(ProjectConfiguration projectConfiguration) {
         this.projectConfiguration = projectConfiguration;
-        return this;
-    }
-
-    public String getProjectJarPath() {
-        return projectJarPath;
-    }
-
-    public AppConfiguration setProjectJarPath(String projectJarPath) {
-        this.projectJarPath = projectJarPath;
         return this;
     }
 
@@ -50,10 +45,9 @@ public class AppConfiguration {
         return this;
     }
 
-    public static AppConfiguration getFromEnvironment() throws IOException {
+    public static AppConfiguration getRunnerConfigurations() throws IOException {
         AppConfiguration configuration = new AppConfiguration();
-        configuration.setProjectJarPath(System.getenv(ENV_PROJECT_JAR));
-        configuration.setProjectConfiguration(ProjectUtils.getFromEnvironment());
+        configuration.setProjectConfiguration(ProjectUtils.getProjectConfiguration());
         return configuration;
     }
 }

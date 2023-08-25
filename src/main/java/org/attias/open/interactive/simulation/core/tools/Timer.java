@@ -1,11 +1,10 @@
 package org.attias.open.interactive.simulation.core.tools;
 
 import org.attias.open.interactive.simulation.core.log.AppLog;
-import org.attias.open.interactive.simulation.core.state.StateManager;
 
 public class Timer {
 
-    private static AppLog log = AppLog.get(Timer.class);
+    private static final AppLog log = AppLog.get(Timer.class);
     public float target;
     public float elapsed;
 

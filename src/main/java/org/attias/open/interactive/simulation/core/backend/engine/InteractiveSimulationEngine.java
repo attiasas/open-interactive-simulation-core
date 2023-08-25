@@ -5,50 +5,57 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import org.attias.open.interactive.simulation.core.OIS;
 import org.attias.open.interactive.simulation.core.backend.config.ProjectConfiguration;
+import org.attias.open.interactive.simulation.core.backend.utils.ReflectionUtils;
 import org.attias.open.interactive.simulation.core.log.AppLog;
-import org.attias.open.interactive.simulation.core.backend.utils.ProjectJar;
 import org.attias.open.interactive.simulation.core.state.StateManager;
+import org.attias.open.interactive.simulation.core.files.ResourceManager;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
+/**
+ * The engine that runs the OIS projects on all platforms.
+ */
 public class InteractiveSimulationEngine  extends ApplicationAdapter {
 
-    private static AppLog log = AppLog.get(InteractiveSimulationEngine.class);
-
+    private static final AppLog log = AppLog.get(InteractiveSimulationEngine.class);
+    // The Gdx application
     private Application app;
-    private AppConfiguration configuration;
-    private ProjectJar projectJar;
+    // The application configurations with the dynamic project configurations that runs on the engine
+    private final AppConfiguration configuration;
+    // The object used to access resources from your OIS project
+    private final ResourceManager resourceManager;
+    // The state manager that handles the active states in the simulation
     public final StateManager stateManager;
 
     public InteractiveSimulationEngine(AppConfiguration configuration) {
         this.configuration = configuration;
         this.stateManager = new StateManager();
+        this.resourceManager = new ResourceManager();
     }
 
     @Override
     public void create () {
         this.app = Gdx.app;
-        OIS.engine = this;
-
         try {
             loadFromProjectConfigurations();
+
+            OIS.engine = this;
+            OIS.resources = this.resourceManager;
         } catch (Exception e) {
-            System.err.println("Can't initialize OIS engine");
+            log.error("Can't initialize OIS engine");
             throw new RuntimeException(e);
         }
     }
 
-    private void loadFromProjectConfigurations() throws IOException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-        log.info("Loading Project Jar from: " + this.configuration.getProjectJarPath());
-        this.projectJar = new ProjectJar(this.configuration.getProjectJarPath());
-
+    private void loadFromProjectConfigurations() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        log.info("Loading Project Configurations");
         ProjectConfiguration projectConfiguration = this.configuration.getProjectConfiguration();
         log.info("Loading Project states to manager");
         for (Map.Entry<String, String> entry : projectConfiguration.states.entrySet()) {
             log.info("Loading State '" + entry.getValue() + "'");
-            this.stateManager.addState(entry.getKey(),this.projectJar.newInstance(entry.getValue()));
+            this.stateManager.addState(entry.getKey(), ReflectionUtils.newInstance(entry.getValue()));
         }
         log.info("Starting engine with state '" + projectConfiguration.initialState + "'");
         this.stateManager.start(projectConfiguration.initialState);
