@@ -10,14 +10,13 @@ import org.attias.open.interactive.simulation.core.log.AppLog;
 import org.attias.open.interactive.simulation.core.state.StateManager;
 import org.attias.open.interactive.simulation.core.files.ResourceManager;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 /**
  * The engine that runs the OIS projects on all platforms.
  */
-public class InteractiveSimulationEngine  extends ApplicationAdapter {
+public class InteractiveSimulationEngine extends ApplicationAdapter {
 
     private static final AppLog log = AppLog.get(InteractiveSimulationEngine.class);
     // The Gdx application

@@ -4,6 +4,7 @@ import org.attias.open.interactive.simulation.core.backend.config.ProjectConfigu
 import org.attias.open.interactive.simulation.core.backend.utils.ProjectUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * For specific platform to run on the engine
@@ -17,10 +18,13 @@ public class AppConfiguration {
     public static final String ENV_PROJECT_ASSETS_DIR = "OIS_ENV_PROJECT_ASSETS_DIR";
     // The environment variable used to tell the runner what is the name of the artifact to generate on publish
     public static final String ENV_PROJECT_NAME = "OIS_ENV_PROJECT_NAME";
+    // The environment variable used when running not on publish, to tell the runner where the android sdk
+    // If not exists, it will search the value from environment variable named 'ANDROID_HOME';
+    public static final String ENV_ANDROID_SDK_PATH = "OIS_ENV_ANDROID_SDK_PATH";
 
     // The Supported application running platforms by the OIS
     public enum AppType {
-        Desktop
+        Desktop, Android
     }
 
     private AppType type;
@@ -45,9 +49,9 @@ public class AppConfiguration {
         return this;
     }
 
-    public static AppConfiguration getRunnerConfigurations() throws IOException {
+    public static AppConfiguration getRunnerConfigurations(InputStream assetsProjectConfiguration) throws IOException {
         AppConfiguration configuration = new AppConfiguration();
-        configuration.setProjectConfiguration(ProjectUtils.getProjectConfiguration());
+        configuration.setProjectConfiguration(ProjectUtils.getProjectConfiguration(assetsProjectConfiguration));
         return configuration;
     }
 }
