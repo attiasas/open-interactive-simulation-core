@@ -27,6 +27,7 @@ repositories {
 ext {
     gdxVersion = '1.10.0'
     gdxControllersVersion = '2.1.0'
+    commonsLangVersion = '3.11'
 }
 
 dependencies {
@@ -35,6 +36,7 @@ dependencies {
     implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+    implementation "org.apache.commons:commons-lang3:$commonsLangVersion"
 
     testImplementation 'org.testng:testng:7.5'
 }

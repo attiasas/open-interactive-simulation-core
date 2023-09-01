@@ -16,8 +16,10 @@ public class PublishConfiguration {
 
     // List of all the platforms that the project will run on, must have at least one entry
     public Set<AppConfiguration.AppType> platforms = new HashSet<>();
-    // Optional name for the execution [default: project name]
+    // [Optional] name for the execution [default: project name]
     public String publishedName = "";
-    // Optional configurations for each platform
+    // [Optional] the directory that the custom icon stored at
     public String iconsDir;
+    // [Optional] if exists and true will try to generate missing icons
+    public Boolean generateMissingIcons;
 }
