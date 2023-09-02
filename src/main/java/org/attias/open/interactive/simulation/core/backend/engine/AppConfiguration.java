@@ -11,6 +11,8 @@ import java.io.InputStream;
  */
 @SuppressWarnings("unused")
 public class AppConfiguration {
+    // The environment variable, if exists, used to tell the runner that it's running in debug mode and not published
+    public static final String ENV_DEBUG_MODE = "OIS_ENV_DEBUG_MODE";
     // The environment variable used to tell the runner where the OIS project jar exists.
     // It will load the jar to run with the engine
     public static final String ENV_PROJECT_JAR = "OIS_ENV_PROJECT_JAR_PATH";
