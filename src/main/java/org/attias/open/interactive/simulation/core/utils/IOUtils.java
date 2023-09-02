@@ -1,8 +1,5 @@
 package org.attias.open.interactive.simulation.core.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -12,17 +9,8 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+@SuppressWarnings("unused")
 public class IOUtils {
-
-    public static ObjectMapper objectMapper = createObjectMapper();
-
-    private static ObjectMapper createObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        return mapper;
-    }
-
-    // File System utils
 
     public static boolean copyFile(InputStream src, Path target, boolean failIfCantCreate) throws IOException {
         try {
@@ -63,7 +51,7 @@ public class IOUtils {
     public static void copyDirectoryContent(Path sourcePath, Path targetPath) throws IOException {
         // Copy all files and subdirectories from source to target
         EnumSet<FileVisitOption> options = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
-        Files.walkFileTree(sourcePath, options, Integer.MAX_VALUE, new SimpleFileVisitor<Path>() {
+        Files.walkFileTree(sourcePath, options, Integer.MAX_VALUE, new SimpleFileVisitor<>() {
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
                 Path targetDir = targetPath.resolve(sourcePath.relativize(dir));
@@ -182,24 +170,5 @@ public class IOUtils {
             }
             addedEntries.add(entryName);
         }
-    }
-
-    // JSON Utils
-
-    public static String toJson(Object obj) throws IOException {
-        return objectMapper.writeValueAsString(obj);
-    }
-
-    public static void writeAsJsonFile(Object obj, Path destination) throws IOException {
-        createFileIfNotExists(destination);
-        objectMapper.writeValue(destination.toFile(), obj);
-    }
-
-    public static <T> T getObjFromJsonFile(InputStream in, Class<T> valueType) throws IOException {
-        return objectMapper.readValue(in, valueType);
-    }
-
-    public static <T> T getObjFromJsonFile(File jsonFile, Class<T> valueType) throws IOException {
-        return objectMapper.readValue(jsonFile, valueType);
     }
 }

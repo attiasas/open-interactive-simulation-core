@@ -4,7 +4,7 @@
 
 ---
 
-# ⚒️ Building the plugin
+# ⚒️ Building the library
 
 To build the library sources, please follow these steps:
 
@@ -16,11 +16,15 @@ To build the library sources, please follow these steps:
 
 To build the library sources and publish it locally, run the following Gradle command:
 ```
-    gradlew publishToMavenLocal
+gradlew publishToMavenLocal
 ```
+After running the command you will be able to use the library from `mavenLocal()` in a test project.
 
 ---
 
 # 🧪 Testing the plugin
 
 To test the library sources, please follow these steps:
+```
+gradlew clean check
+```

@@ -12,10 +12,13 @@ import java.util.Set;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@SuppressWarnings("unused")
 public class PublishConfiguration {
 
     // List of all the platforms that the project will run on, must have at least one entry
     public Set<AppConfiguration.AppType> platforms = new HashSet<>();
+    // [Optional] the publishing version number (typically incremented with each release)
+    public Integer publishNumber;
     // [Optional] name for the execution [default: project name]
     public String publishedName = "";
     // [Optional] the directory that the custom icon stored at

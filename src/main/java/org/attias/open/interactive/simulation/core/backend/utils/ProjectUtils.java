@@ -2,16 +2,16 @@ package org.attias.open.interactive.simulation.core.backend.utils;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.attias.open.interactive.simulation.core.backend.config.ProjectConfiguration;
-import org.attias.open.interactive.simulation.core.utils.IOUtils;
+import org.attias.open.interactive.simulation.core.utils.JsonUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class ProjectUtils {
     // Shortcut for Open Interactive Simulation
     public static final String OIS = "ois";
@@ -22,7 +22,8 @@ public class ProjectUtils {
     public enum IconExtension {
         PNG (".png"),
         ICO (".ico"),
-        ICNS (".icns");
+        ICNS (".icns"),
+        XML(".xml");
 
         public final String value;
 
@@ -44,10 +45,11 @@ public class ProjectUtils {
     }
 
     public static DesktopOS getCurrentOS() {
-        String osName = SystemUtils.OS_NAME.toLowerCase();
+        String osName = SystemUtils.OS_NAME;
         if (osName == null) {
             return DesktopOS.Unknown;
         }
+        osName = osName.toLowerCase();
         if (osName.contains("darwin") || osName.contains("mac")) {
             return DesktopOS.Mac;
         }
@@ -65,7 +67,7 @@ public class ProjectUtils {
         if (configurationPath == null) {
             return null;
         }
-        return IOUtils.getObjFromJsonFile(Paths.get(configurationPath).toFile(), ProjectConfiguration.class);
+        return JsonUtils.getObjFromJsonFile(Paths.get(configurationPath).toFile(), ProjectConfiguration.class);
     }
 
     public static String getProjectConfigurationsAssetsPath() {
@@ -77,7 +79,7 @@ public class ProjectUtils {
         if (in == null) {
             throw new RuntimeException("Can't find project configurations.");
         }
-        return IOUtils.getObjFromJsonFile(in, ProjectConfiguration.class);
+        return JsonUtils.getObjFromJsonFile(in, ProjectConfiguration.class);
     }
 
     public static ProjectConfiguration getProjectConfiguration(InputStream assetsProjectConfiguration) throws IOException {

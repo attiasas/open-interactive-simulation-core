@@ -6,7 +6,7 @@ import java.io.File;
 
 public class ResourceManager {
 
-    public File getFile(String path) {
+    public static File getFile(String path) {
         return Gdx.files.internal(path).file();
     }
 
