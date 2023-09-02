@@ -48,14 +48,16 @@ This library is not available in Maven central yet, required to be installed loc
 3. Add this library as dependency to your project `build.gradle`
     ```groovy
     dependencies {
-        implementation group: 'org.attias.open.interactive.simulation', name: 'open-interactive-simulation-core', version: '1.0-SNAPSHOT'
+        implementation group: 'org.attias.open.interactive.simulation', name: 'open-interactive-simulation-core', version: '0.1'
     }
    ```
 
 ---
 ## 🏗️ Usage
 
-Discover the steps for implementing an OIS project using the library by exploring our comprehensive  [user guide](USER_GUIDE.md).
+Discover the steps for implementing an OIS project:
+1. Development environment using the [OIS deployer](https://github.com/attiasas/open-interactive-simulation-deployer). 
+2. Project implementation by exploring our comprehensive [user guide](USER_GUIDE.md).
 
 ---
 ## 🐞 Reporting Issues
@@ -70,4 +72,4 @@ by [reporting any issues](https://github.com/attiasas/open-interactive-simulatio
 ## 🤝 Contributions
 
 We welcome pull requests from the community. To help us improve this project, please read
-our [Contribution](./CONTRIBUTING.md#-guidelines) guide.
+our [Contribution](CONTRIBUTING.md) guide.

@@ -1,7 +1,7 @@
 package org.attias.open.interactive.simulation.core.backend.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.attias.open.interactive.simulation.core.utils.IOUtils;
+import org.attias.open.interactive.simulation.core.utils.JsonUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.util.*;
  * The project configurations object that holds the values from simulation.ois config file
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@SuppressWarnings("unused")
 public class ProjectConfiguration {
     // The environment variable that lets the runner know where the OIS project config file exists
     // This is used for running OIS project dynamically not on production
@@ -39,9 +40,9 @@ public class ProjectConfiguration {
     public static ProjectConfiguration get(Path path) throws IOException {
         File file = path.toFile();
         if (file.isDirectory()) {
-            return IOUtils.getObjFromJsonFile(path.resolve(DEFAULT_FILE_NAME).toFile(), ProjectConfiguration.class);
+            return JsonUtils.getObjFromJsonFile(path.resolve(DEFAULT_FILE_NAME).toFile(), ProjectConfiguration.class);
         } else {
-            return IOUtils.getObjFromJsonFile(file, ProjectConfiguration.class);
+            return JsonUtils.getObjFromJsonFile(file, ProjectConfiguration.class);
         }
     }
 }

@@ -84,7 +84,7 @@ public class Version implements Serializable {
         return comparison;
     }
 
-    public boolean isNumeric(String str) {
+    private boolean isNumeric(String str) {
         if (str == null || str.isEmpty()) {
             return false;
         }
@@ -98,7 +98,7 @@ public class Version implements Serializable {
         return true;
     }
 
-    public boolean isAlphaNumeric(String str) {
+    private boolean isAlphaNumeric(String str) {
         if (str == null || str.isEmpty()) {
             return false;
         }
